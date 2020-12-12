@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -35,7 +34,7 @@ public class AsteroidGenerator
     private void generatePlatformEffector2D(GameObject asteroid)
     {
         var platformEffector2D = asteroid.AddComponent<PlatformEffector2D> ();
-        platformEffector2D.surfaceArc = 160;
+        platformEffector2D.surfaceArc = 180;
         platformEffector2D.useOneWay = true;
     }
     private void generatePolygonCollider2D(GameObject asteroid, Vector2[] points)
@@ -53,16 +52,24 @@ public class AsteroidGenerator
         var indices = triangulator.Triangulate();
 
         // Generate a color for each vertex
-        var colors = Enumerable.Range(0, vertices3D.Length)
+        /*var colors = Enumerable.Range(0, vertices3D.Length)
             .Select(i => Random.ColorHSV())
             .ToArray();
+        */
+        var colors = new Color[] { ToColor("6E654F"), ToColor("CDC9AA"), ToColor("A19C83") };
+        var colors_to_mesh = new Color[vertices3D.Length];
+        for(int k=0,i=0 ; i< vertices3D.Length; i++, k++)
+        {
+            if (k == 3) { k = 0; }
+            colors_to_mesh[i] = colors[k];
+        }
 
         // Create the mesh
         var mesh = new Mesh
         {
             vertices = vertices3D,
             triangles = indices,
-            colors = colors,
+            colors = colors_to_mesh
         };
 
         mesh.RecalculateNormals();
@@ -74,6 +81,26 @@ public class AsteroidGenerator
 
         var filter = asteroid.AddComponent<MeshFilter>();
         filter.mesh = mesh;
+    }
+    Color ToColor(string color)
+    {
+        if (color.StartsWith("#", System.StringComparison.InvariantCulture))
+        {
+            color = color.Substring(1); // strip #
+        }
+
+        if (color.Length == 6)
+        {
+            color += "FF"; // add alpha if missing
+        }
+
+        var hex = System.Convert.ToUInt32(color, 16);
+        var r = ((hex & 0xff000000) >> 0x18) / 255f;
+        var g = ((hex & 0xff0000) >> 0x10) / 255f;
+        var b = ((hex & 0xff00) >> 8) / 255f;
+        var a = ((hex & 0xff)) / 255f;
+
+        return new Color(r, g, b, a);
     }
     public Vector2[] generatePolygon()
     {

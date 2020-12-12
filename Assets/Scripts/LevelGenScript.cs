@@ -13,6 +13,7 @@ public class LevelGenScript : MonoBehaviour {
     public float irregularity = 0.8f;
     public float spikeyness = 0f;
     public int numVerts = 6;
+    public int InRow = 2;
 
     // Use this for initialization
     void Start () {
@@ -23,8 +24,11 @@ public class LevelGenScript : MonoBehaviour {
         for (int i = 0; i <= numberofPlatform; i++)
         {
             spawnPosition.y += Random.Range(minY, maxY);
-            spawnPosition.x = Random.Range(-levelWidth, levelWidth);
-            generator.generate(spawnPosition.x, spawnPosition.y);
+            for (int j = 0; j < InRow; j++, i++)
+            {
+                spawnPosition.x = Random.Range(-levelWidth, levelWidth);
+                generator.generate(spawnPosition.x, spawnPosition.y);
+            }
         }
 
     }
