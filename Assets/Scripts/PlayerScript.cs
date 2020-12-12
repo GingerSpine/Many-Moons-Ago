@@ -2,7 +2,6 @@
 
 public class PlayerScript : MonoBehaviour
 {
-
     private Rigidbody2D rb;
     private TrajectoryController trajectoryController;
     private bool isPulling;

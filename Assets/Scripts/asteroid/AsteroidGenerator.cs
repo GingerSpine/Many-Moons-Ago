@@ -35,7 +35,7 @@ public class AsteroidGenerator
     private void generatePlatformEffector2D(GameObject asteroid)
     {
         var platformEffector2D = asteroid.AddComponent<PlatformEffector2D> ();
-        platformEffector2D.surfaceArc = 180;
+        platformEffector2D.surfaceArc = 160;
         platformEffector2D.useOneWay = true;
     }
     private void generatePolygonCollider2D(GameObject asteroid, Vector2[] points)
@@ -62,7 +62,7 @@ public class AsteroidGenerator
         {
             vertices = vertices3D,
             triangles = indices,
-            colors = colors
+            colors = colors,
         };
 
         mesh.RecalculateNormals();
