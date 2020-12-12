@@ -1,12 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerScript : MonoBehaviour {
 
-    float movement = 0f;
-    Rigidbody2D rb;
-    public float moveSpeed;
+    private float movement = 0f;
+    private Rigidbody2D rb;
+    private bool isPulling;
+    private Vector2 mousePositionDelta;
+    private float jumpForce;
+
+    public float maxMouseDelta;
+    public float multiplier;
+
+    private bool IsNoVelocity => rb.velocity.x == 0 && rb.velocity.y == 0;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();	
@@ -14,13 +20,48 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        movement = Input.GetAxis("Horizontal") * moveSpeed;
-	}
+        if (Input.GetMouseButton(0))
+        {
+            if (!isPulling && IsNoVelocity)
+            {
+                isPulling = true;
+                mousePositionDelta = new Vector2(0, 0);
+            }
+            if (isPulling)
+            {
+                mousePositionDelta += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+                // Calculating acceleration
+                var power = Mathf.Sqrt(Mathf.Pow(mousePositionDelta.x, 2) + Mathf.Pow(mousePositionDelta.y, 2));
+                jumpForce = Mathf.Min(power, maxMouseDelta);
+            }
+        }
+        else
+        {
+            if (isPulling)
+            {
+                UpdateVelocty(y: jumpForce * multiplier);
+                isPulling = false;
+            }
+        }
+
+    }
 
     private void FixedUpdate()
     {
-        Vector2 velocity = rb.velocity;
-        velocity.x = movement;
+    }
+
+    private void UpdateVelocty(float? x = null, float? y = null)
+    {
+        var velocity = rb.velocity;
+        if (y.HasValue)
+        {
+            velocity.y = y.Value;
+        }
+        if (x.HasValue)
+        {
+            velocity.x = x.Value;
+        }
         rb.velocity = velocity;
     }
 }
