@@ -2,11 +2,9 @@
 
 public class PlayerScript : MonoBehaviour {
 
-    private float movement = 0f;
     private Rigidbody2D rb;
     private bool isPulling;
-    private Vector2 mousePositionDelta;
-    private float jumpForce;
+    private Vector3 startPosition;
 
     public float maxMouseDelta;
     public float multiplier;
@@ -20,27 +18,28 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (!isPulling && IsNoVelocity)
             {
                 isPulling = true;
-                mousePositionDelta = new Vector2(0, 0);
-            }
-            if (isPulling)
-            {
-                mousePositionDelta += new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
-                // Calculating acceleration
-                var power = Mathf.Sqrt(Mathf.Pow(mousePositionDelta.x, 2) + Mathf.Pow(mousePositionDelta.y, 2));
-                jumpForce = Mathf.Min(power, maxMouseDelta);
+                startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
         }
-        else
+        if (Input.GetMouseButton(0))
         {
             if (isPulling)
             {
-                UpdateVelocty(y: jumpForce * multiplier);
+                //Debug.DrawRay(transform.position, worldPoint, Color.green);
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (isPulling)
+            {
+                var diffPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - startPosition;
+
+                UpdateVelocty(-diffPosition.x * multiplier, -diffPosition.y * multiplier);
                 isPulling = false;
             }
         }

@@ -18,7 +18,7 @@ public class CameraFollowScript : MonoBehaviour
     {
         //if (cameraPosition.position.y > transform.position.y + allowedOffset || cameraPosition.position.y < transform.position.y - allowedOffset)
         {
-            Vector3 newPosition = new Vector3(transform.position.x, cameraPosition.position.y, transform.position.z);
+            Vector3 newPosition = new Vector3(cameraPosition.position.x, cameraPosition.position.y, transform.position.z);
             transform.position = newPosition;
         }
     }
