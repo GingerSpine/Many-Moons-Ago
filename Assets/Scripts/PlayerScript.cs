@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
-public class PlayerScript : MonoBehaviour {
+public class PlayerScript : MonoBehaviour
+{
 
     private Rigidbody2D rb;
+    private TrajectoryController trajectoryController;
     private bool isPulling;
     private Vector3 startPosition;
 
@@ -11,13 +13,16 @@ public class PlayerScript : MonoBehaviour {
 
     private bool IsNoVelocity => rb.velocity.x == 0 && rb.velocity.y == 0;
 
-	// Use this for initialization
-	void Start () {
-        rb = GetComponent<Rigidbody2D>();	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        trajectoryController = GetComponent<TrajectoryController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             if (!isPulling && IsNoVelocity)
@@ -30,6 +35,11 @@ public class PlayerScript : MonoBehaviour {
         {
             if (isPulling)
             {
+                var diffPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - startPosition;
+                var velocity = rb.velocity;
+                velocity.y = -diffPosition.y * multiplier;
+                velocity.x = -diffPosition.x * multiplier;
+                trajectoryController.velocity = velocity;
                 //Debug.DrawRay(transform.position, worldPoint, Color.green);
             }
         }
