@@ -17,7 +17,7 @@ public class AsteroidGenerator
         _numVerts = numVerts;
     }
 
-    public GameObject generate(float x, float y, float z = 0.0f)
+    public GameObject generate(float x, float y, float z = 0.0f, float scaleX = 1f, float scaleY = 0.5f)
     {
         GameObject newAsteroid = new GameObject();
         newAsteroid.name = "Asteroid";
@@ -28,6 +28,7 @@ public class AsteroidGenerator
         generatePlatformEffector2D(newAsteroid);
 
         newAsteroid.transform.position = new Vector3(x, y, z);
+        newAsteroid.transform.localScale = new Vector3(scaleX, scaleY, 1f);
 
         return newAsteroid;
     }
