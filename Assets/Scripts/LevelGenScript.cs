@@ -14,12 +14,13 @@ public class LevelGenScript : MonoBehaviour {
 	void Start () {
 
         Vector3 spawnPosition = new Vector3();
+        AsteroidGenerator generator = new AsteroidGenerator(0f, 0f, 1.0f, 0.8f, 0f, 5);
 
-        for (int i=0; i<= numberofPlatform; i++)
+        for (int i = 0; i <= numberofPlatform; i++)
         {
             spawnPosition.y += Random.Range(minY, maxY);
             spawnPosition.x = Random.Range(-levelWidth, levelWidth);
-            Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+            generator.generate(spawnPosition.x, spawnPosition.y);
         }
 
     }
