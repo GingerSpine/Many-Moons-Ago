@@ -18,8 +18,6 @@ public class AsteroidCollision : MonoBehaviour
             Instantiate(platform, new Vector3(oth_pos.x+0.2f, oth_pos.y-0.6f, 0f), Quaternion.identity);
             var _explodable = GetComponent<Explodable>();
             _explodable.explode();
-            ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
-            ef.doExplosion(transform.position);
             StartCoroutine(waiter());
         }
     }

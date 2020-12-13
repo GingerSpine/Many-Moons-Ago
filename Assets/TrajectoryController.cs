@@ -29,6 +29,7 @@ public class TrajectoryController : MonoBehaviour
     private void Start()
     {
         g = Mathf.Abs(Physics2D.gravity.y);
+        IsVisible = false;
     }
 
     private void Update()
