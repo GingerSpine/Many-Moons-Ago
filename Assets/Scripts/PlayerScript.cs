@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isPulling;
     private Vector3 startPosition;
+    private int coins;
 
     public float maxMouseDelta;
     public float multiplier;
@@ -85,5 +86,14 @@ public class PlayerScript : MonoBehaviour
             velocity.x = x.Value;
         }
         rb.velocity = velocity;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            coins++;
+            Destroy(other.gameObject);
+        }
     }
 }
