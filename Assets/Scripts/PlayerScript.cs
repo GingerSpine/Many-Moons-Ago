@@ -136,5 +136,16 @@ public class PlayerScript : MonoBehaviour
             coins++;
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("balon"))
+        {
+            for (int i = 0; i < balons.Length; i++)
+            {
+                if (balons[i].sprite == balon_empty)
+                {
+                    balons[i].sprite = balon_full;
+                    Destroy(other.gameObject);
+                }
+            }
+        }
     }
 }

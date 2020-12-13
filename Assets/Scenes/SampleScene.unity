@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 52542632}
   m_Layer: 0
   m_Name: coin_balon
-  m_TagString: Coin
+  m_TagString: balon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
