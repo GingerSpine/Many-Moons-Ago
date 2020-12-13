@@ -14,4 +14,9 @@ public class LevelChooseBehaviour : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void OpenOpening()
+    {
+        SceneManager.LoadScene("Opening");
+    }
 }
