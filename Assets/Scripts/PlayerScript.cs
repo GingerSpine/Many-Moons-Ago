@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -11,6 +14,8 @@ public class PlayerScript : MonoBehaviour
 
     public float maxMouseDelta;
     public float multiplier;
+    public Text balonTimer;
+    public int timer = 200;
 
     private bool IsNoVelocity => rb.velocity.x == 0 && rb.velocity.y == 0;
 
@@ -20,6 +25,20 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         trajectoryController = GetComponent<TrajectoryController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine("DoCheck");
+    }
+    IEnumerator DoCheck()
+    {
+        for (; ; )
+        {
+            timer--;
+            TimeSpan t = TimeSpan.FromSeconds(timer);
+            balonTimer.text = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                t.Hours,
+                t.Minutes,
+                t.Seconds);
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 
     // Update is called once per frame
