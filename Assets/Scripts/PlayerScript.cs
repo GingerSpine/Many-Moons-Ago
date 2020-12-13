@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     private bool isPulling;
     private Vector3 startPosition;
     private int coins;
+    private int score = 0;
 
     public float maxMouseDelta;
     public float multiplier;
@@ -21,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     public Sprite balon_empty;
     public int timer = 0;
     public int balon_timer = 30;
+    public Text scoreCounter;
+    public int score_per_second = 5;
 
     private bool IsNoVelocity => rb.velocity.x == 0 && rb.velocity.y == 0;
 
@@ -36,6 +39,7 @@ public class PlayerScript : MonoBehaviour
     {
         for (; ; )
         {
+            score += score_per_second;
             timer--;
             if (timer <= 0)
             {
@@ -55,6 +59,7 @@ public class PlayerScript : MonoBehaviour
                 t.Minutes,
                 t.Seconds);
 
+            scoreCounter.text = score.ToString();
             if (timer <= 0)
             {
                 SceneManager.LoadScene("GameOver");
