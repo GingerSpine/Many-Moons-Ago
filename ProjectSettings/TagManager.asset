@@ -7,6 +7,8 @@ TagManager:
   - BottomEdge
   - platforms
   - Coin
+  - balon_timer
+  - balon
   layers:
   - Default
   - TransparentFX
