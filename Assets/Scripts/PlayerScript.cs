@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -15,7 +16,11 @@ public class PlayerScript : MonoBehaviour
     public float maxMouseDelta;
     public float multiplier;
     public Text balonTimer;
-    public int timer = 200;
+    public Image[] balons;
+    public Sprite balon_full;
+    public Sprite balon_empty;
+    public int timer = 0;
+    public int balon_timer = 30;
 
     private bool IsNoVelocity => rb.velocity.x == 0 && rb.velocity.y == 0;
 
@@ -32,11 +37,28 @@ public class PlayerScript : MonoBehaviour
         for (; ; )
         {
             timer--;
+            if (timer <= 0)
+            {
+                for (int i = 0; i < balons.Length; i++)
+                {
+                    if (balons[i].sprite == balon_full)
+                    {
+                        timer += balon_timer;
+                        balons[i].sprite = balon_empty;
+                        break;
+                    }
+                }
+            }
             TimeSpan t = TimeSpan.FromSeconds(timer);
             balonTimer.text = string.Format("{0:D2}:{1:D2}:{2:D2}",
                 t.Hours,
                 t.Minutes,
                 t.Seconds);
+
+            if (timer <= 0)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
             yield return new WaitForSeconds(1.0f);
         }
     }
