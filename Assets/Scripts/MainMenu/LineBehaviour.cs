@@ -7,14 +7,14 @@ public class LineBehaviour : MonoBehaviour
     public float speedValue;
     public float sizeY;
 
-    private float timeOfDecaying = 2f;
+    private float timeOfDecaying = 5f;
     private float _speed;
     
     void Start()
     {
-        _speed = Random.Range(speedValue-500, speedValue + 500);
+        _speed = Random.Range(speedValue - 10, speedValue + 10);
         sizeY = speedValue /_speed;
-        transform.localScale = Vector3.up * sizeY;
+        transform.localScale = Vector3.one + (1- sizeY)*Vector3.up;
     }
 
     void Update()
