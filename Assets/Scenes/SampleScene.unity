@@ -3064,7 +3064,7 @@ MonoBehaviour:
   spikeyness: 0
   numVerts: 6
   InRow: 2
-  numberOfTAPOK: 20
+  numberOfTAPOK: 60
   TAPOKs:
   - {fileID: 1826528578}
   - {fileID: 253347922}
