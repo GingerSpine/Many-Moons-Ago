@@ -356,7 +356,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 641555367}
         m_TargetAssemblyTypeName: LevelChooseBehaviour, Assembly-CSharp
-        m_MethodName: OpenLevel
+        m_MethodName: OpenOpening
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
