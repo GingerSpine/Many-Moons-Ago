@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:Assets/Resources/Sprites.meta
-guid: 8749f1b5e202e6f408775771d94b4f10
-=======
 guid: 6ccae08be76087444bc9e9bed112b201
->>>>>>> Stashed changes:Assets/Scripts/asteroid/clipper_library.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

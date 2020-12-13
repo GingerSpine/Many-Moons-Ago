@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:Assets/Resources/Sprites/Косм2.png.meta
-guid: fbba6cf2327982f40836b7f94e9506a5
-=======
-guid: df580300ac1c5fd4bb3171bc4d20631b
->>>>>>> Stashed changes:Assets/ast_01.png.meta
+guid: 60f610037aed1af4ca431d74eeb7cecf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -27,6 +23,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -61,6 +58,7 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3

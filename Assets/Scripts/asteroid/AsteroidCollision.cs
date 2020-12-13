@@ -1,29 +1,31 @@
-﻿using UnityEditor;
+﻿using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class AsteroidCollision : MonoBehaviour
 {
-    public float jumpForce = 10f;
+    public Rigidbody2D rb;
+    public GameObject GameObject;
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log("Collision");
-        if (collision.relativeVelocity.y <= 0f)
+        Debug.Log(other.relativeVelocity.magnitude);
+        //Debug.Log("Collision"); 
+        if (rb.gameObject.tag == other.gameObject.tag && rb.velocity.y <= 0)
         {
-            Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
-
-            if (rb != null)
-            {
-                Vector2 velocity = rb.velocity;
-                velocity.y = 0;
-                rb.velocity = velocity;
-            }
+            var _explodable = GetComponent<Explodable>();
+            _explodable.explode();
+            ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
+            ef.doExplosion(transform.position);
+            StartCoroutine(waiter());
         }
-
-
     }
 
-
+    IEnumerator waiter()
+    {
+        //Wait for 4 seconds
+        yield return new WaitForSeconds(4);
+        Destroy(GameObject);
+    }
 }
 

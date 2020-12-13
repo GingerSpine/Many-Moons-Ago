@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:Assets/Resources.meta
-guid: 23d51d182b4713349990d1e39cf6a8a1
-=======
 guid: 3b89989f82e407a49be108a1e73bbe09
->>>>>>> Stashed changes:Assets/Scripts/asteroid/Delaunay.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

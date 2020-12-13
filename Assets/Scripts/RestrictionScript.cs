@@ -7,7 +7,7 @@ public class RestrictionScript : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(rb.tag == "Player")
+        if(collision.gameObject.tag == rb.tag)
         {
             SceneManager.LoadScene("GameOver");
         }

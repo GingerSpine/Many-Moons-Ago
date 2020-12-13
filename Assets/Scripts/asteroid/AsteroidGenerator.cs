@@ -28,13 +28,14 @@ public class AsteroidGenerator
 
         newAsteroid.transform.position = new Vector3(x, y, z);
         newAsteroid.transform.localScale = new Vector3(scaleX, scaleY, 1f);
+        var script = newAsteroid.AddComponent<AsteroidCollision>();
 
         return newAsteroid;
     }
     private void generatePlatformEffector2D(GameObject asteroid)
     {
         var platformEffector2D = asteroid.AddComponent<PlatformEffector2D> ();
-        platformEffector2D.surfaceArc = 180;
+        platformEffector2D.surfaceArc = 160;
         platformEffector2D.useOneWay = true;
     }
     private void generatePolygonCollider2D(GameObject asteroid, Vector2[] points)
@@ -42,6 +43,7 @@ public class AsteroidGenerator
         var polygonCollider2D = asteroid.AddComponent<PolygonCollider2D>();
         polygonCollider2D.points = points;
         polygonCollider2D.usedByEffector = true;
+        //polygonCollider2D.isTrigger = true;
     }
     private void generateMesh(GameObject asteroid, Vector2[] points)
     {
