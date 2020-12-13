@@ -149,6 +149,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     balons[i].sprite = balon_full;
                     Destroy(other.gameObject);
+                    break;
                 }
             }
         }

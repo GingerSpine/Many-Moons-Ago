@@ -41,14 +41,18 @@ public class LevelGenScript : MonoBehaviour
         for (int i = 0; i <= numberOfTAPOK; i++)
         {
             spawnPositionTAPOK.y += Random.Range(minY, maxY);
-            for (int j = 0; j < InRow; j++, i++)
+            for (int j = 0; j < InRow; j++)
             {
-                spawnPositionTAPOK.x = Random.Range(-levelWidth + (2 * j * (levelWidth / InRow)), -levelWidth + (2 * (j + 1) * (levelWidth / InRow)));
-                Instantiate(TAPOKs[Random.Range(0, TAPOKs.Length)], spawnPositionTAPOK, Quaternion.identity);
-                if (Random.Range(0, 100) <= itemSpawnPercent)
+                spawnPositionTAPOK.x = Random.Range(-levelWidth, levelWidth);
+                if (Random.Range(0, 100) <= 45 || j==0)
                 {
-                    Instantiate(ItemToSpawn[Random.Range(0, ItemToSpawn.Length)], new Vector3(spawnPositionTAPOK.x, spawnPositionTAPOK.y + 1.6f, 0f), Quaternion.identity);
+                    i++;
+                    Instantiate(TAPOKs[Random.Range(0, TAPOKs.Length)], spawnPositionTAPOK, Quaternion.identity);
+                    if (Random.Range(0, 100) <= itemSpawnPercent)
+                    {
+                        Instantiate(ItemToSpawn[Random.Range(0, ItemToSpawn.Length)], new Vector3(spawnPositionTAPOK.x, spawnPositionTAPOK.y + 1.6f, 0f), Quaternion.identity);
 
+                    }
                 }
             }
 
