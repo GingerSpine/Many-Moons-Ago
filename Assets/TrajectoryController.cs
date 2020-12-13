@@ -19,6 +19,13 @@ public class TrajectoryController : MonoBehaviour
     public int linecastResolution;
     public LayerMask canHit;
 
+    [HideInInspector]
+    public bool IsVisible
+    {
+        get => line.gameObject.activeSelf;
+        set => line.gameObject.SetActive(value);
+    }
+
     private void Start()
     {
         g = Mathf.Abs(Physics2D.gravity.y);
