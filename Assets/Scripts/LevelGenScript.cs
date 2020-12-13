@@ -15,7 +15,7 @@ public class LevelGenScript : MonoBehaviour {
     public int numVerts = 6;
     public int InRow = 2;
     public float numberOfTAPOK = 0;
-    public GameObject TAPOK;
+    public GameObject[] TAPOKs;
 
     // Use this for initialization
     void Start () {
@@ -38,7 +38,7 @@ public class LevelGenScript : MonoBehaviour {
         {
             spawnPositionTAPOK.y += Random.Range(minY, maxY);
             spawnPositionTAPOK.x = Random.Range(-levelWidth, levelWidth);
-            Instantiate(TAPOK, spawnPositionTAPOK, Quaternion.identity);
+            Instantiate(TAPOKs[Random.Range(0, TAPOKs.Length)], spawnPositionTAPOK, Quaternion.identity);
 
         }
 
