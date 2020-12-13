@@ -143,7 +143,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (other.CompareTag("balon"))
         {
-            for (int i = 0; i < balons.Length; i++)
+            for (int i = balons.Length - 1; i >=0; i--)
             {
                 if (balons[i].sprite == balon_empty)
                 {
