@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGenScript : MonoBehaviour {
+public class LevelGenScript : MonoBehaviour
+{
 
     public GameObject platformPrefab;
     public float numberofPlatform;
@@ -20,7 +21,8 @@ public class LevelGenScript : MonoBehaviour {
     public GameObject[] ItemToSpawn;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         //Vector3 spawnPosition = new Vector3();
         //AsteroidGenerator generator = new AsteroidGenerator(0f, 0f, aveRadius, irregularity, spikeyness, numVerts);
@@ -39,21 +41,25 @@ public class LevelGenScript : MonoBehaviour {
         for (int i = 0; i <= numberOfTAPOK; i++)
         {
             spawnPositionTAPOK.y += Random.Range(minY, maxY);
-            spawnPositionTAPOK.x = Random.Range(-levelWidth, levelWidth);
-            Instantiate(TAPOKs[Random.Range(0, TAPOKs.Length)], spawnPositionTAPOK, Quaternion.identity);
-            if(Random.Range(0, 100) <= itemSpawnPercent)
+            for (int j = 0; j < InRow; j++, i++)
             {
-                Instantiate(ItemToSpawn[Random.Range(0, ItemToSpawn.Length)], new Vector3(spawnPositionTAPOK.x, spawnPositionTAPOK.y + 1.6f, 0f), Quaternion.identity);
+                spawnPositionTAPOK.x = Random.Range(-levelWidth + (2 * j * (levelWidth / InRow)), -levelWidth + (2 * (j + 1) * (levelWidth / InRow)));
+                Instantiate(TAPOKs[Random.Range(0, TAPOKs.Length)], spawnPositionTAPOK, Quaternion.identity);
+                if (Random.Range(0, 100) <= itemSpawnPercent)
+                {
+                    Instantiate(ItemToSpawn[Random.Range(0, ItemToSpawn.Length)], new Vector3(spawnPositionTAPOK.x, spawnPositionTAPOK.y + 1.6f, 0f), Quaternion.identity);
 
+                }
             }
 
         }
 
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
