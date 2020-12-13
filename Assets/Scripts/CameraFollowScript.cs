@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CameraFollowScript : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class CameraFollowScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -18,4 +18,6 @@ public class CameraFollowScript : MonoBehaviour
         Vector3 newPosition = new Vector3(cameraPosition.position.x, cameraPosition.position.y, transform.position.z);
         transform.position = newPosition;
     }
+
+
 }

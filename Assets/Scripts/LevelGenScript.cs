@@ -16,6 +16,8 @@ public class LevelGenScript : MonoBehaviour {
     public int InRow = 2;
     public float numberOfTAPOK = 0;
     public GameObject[] TAPOKs;
+    public float itemSpawnPercent = 100;
+    public GameObject[] ItemToSpawn;
 
     // Use this for initialization
     void Start () {
@@ -39,6 +41,11 @@ public class LevelGenScript : MonoBehaviour {
             spawnPositionTAPOK.y += Random.Range(minY, maxY);
             spawnPositionTAPOK.x = Random.Range(-levelWidth, levelWidth);
             Instantiate(TAPOKs[Random.Range(0, TAPOKs.Length)], spawnPositionTAPOK, Quaternion.identity);
+            if(Random.Range(0, 100) <= itemSpawnPercent)
+            {
+                Instantiate(ItemToSpawn[Random.Range(0, ItemToSpawn.Length)], new Vector3(spawnPositionTAPOK.x, spawnPositionTAPOK.y + 1.6f, 0f), Quaternion.identity);
+
+            }
 
         }
 
