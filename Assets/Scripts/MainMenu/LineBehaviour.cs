@@ -12,7 +12,7 @@ public class LineBehaviour : MonoBehaviour
     
     void Start()
     {
-        _speed = Random.Range(speedValue - 10, speedValue + 10);
+        _speed = Random.Range(speedValue - 5, speedValue + 5);
         sizeY = speedValue /_speed;
         transform.localScale = Vector3.one + (1- sizeY)*Vector3.up;
     }
@@ -27,6 +27,7 @@ public class LineBehaviour : MonoBehaviour
         else
         {
             timeOfDecaying -= Time.deltaTime;
+            
         }
     }
 }
