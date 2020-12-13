@@ -23,6 +23,6 @@ public class MainMenuBehaviour : MonoBehaviour
     public void PlayGame()
     {
         ButtonClick.Play();
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("SampleScene");
     }
 }

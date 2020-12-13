@@ -1096,7 +1096,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1066507424}
-  - component: {fileID: 1066507423}
   - component: {fileID: 1066507422}
   - component: {fileID: 1066507425}
   m_Layer: 0
@@ -1158,21 +1157,6 @@ MonoBehaviour:
   linePrefab: {fileID: 3892897927031287136, guid: f27470939507e5e4683d5ce0b4605f42,
     type: 3}
   timeBetweenSpawns: 0.2
---- !u!114 &1066507423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1066507421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ebd8dc58317e6240a1cbf4588b32bc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints: []
-  linePrefab: {fileID: 0}
-  timeBetweenSpawns: 0
 --- !u!4 &1066507424
 Transform:
   m_ObjectHideFlags: 0
