@@ -10,60 +10,52 @@ public class LevelGenScript : MonoBehaviour
     public float levelWidth;
     public float minY;
     public float maxY;
-    public float aveRadius = 1f;
-    public float irregularity = 0.8f;
-    public float spikeyness = 0f;
-    public int numVerts = 6;
     public int InRow = 2;
-    public float numberOfTAPOK = 0;
-    public GameObject[] TAPOKs;
+    public GameObject[] Asteroids;
     public float itemSpawnPercent = 100;
     public GameObject[] ItemToSpawn;
+    public GameObject Player;
+
+    private int baseCountOfAsteroids = 40;
+    private Vector3 lastSpawnPosition;
 
     // Use this for initialization
     void Start()
     {
+        lastSpawnPosition = new Vector3();
+        generate_platforms();
+    }
 
-        //Vector3 spawnPosition = new Vector3();
-        //AsteroidGenerator generator = new AsteroidGenerator(0f, 0f, aveRadius, irregularity, spikeyness, numVerts);
-        /*
-        for (int i = 0; i < numberofPlatform; i++)
-        { 
-            spawnPosition.y += Random.Range(minY, maxY);
-            for (int j = 0; j < InRow; j++, i++)
-            {
-                spawnPosition.x = Random.Range(-levelWidth, levelWidth);
-                generator.generate(spawnPosition.x, spawnPosition.y);
-            }
-        }
-        */
-        Vector3 spawnPositionTAPOK = new Vector3();
-        for (int i = 0; i <= numberOfTAPOK; i++)
+    // Update is called once per frame
+    void Update()
+    {
+        if(Player.transform.position.y >= (lastSpawnPosition.y - (minY + maxY) / 2))
         {
-            spawnPositionTAPOK.y += Random.Range(minY, maxY);
+            generate_platforms();
+        }
+    }
+
+    void generate_platforms()
+    {
+
+        for (int i = 0; i <= baseCountOfAsteroids; i++)
+        {
+            lastSpawnPosition.y += Random.Range(minY, maxY);
             for (int j = 0; j < InRow; j++)
             {
-                spawnPositionTAPOK.x = Random.Range(-levelWidth, levelWidth);
-                if (Random.Range(0, 100) <= 45 || j==0)
+                lastSpawnPosition.x = Random.Range(-levelWidth, levelWidth);
+                if (Random.Range(0, 100) <= 45 || j == 0)
                 {
                     i++;
-                    Instantiate(TAPOKs[Random.Range(0, TAPOKs.Length)], spawnPositionTAPOK, Quaternion.identity);
+                    Instantiate(Asteroids[Random.Range(0, Asteroids.Length)], lastSpawnPosition, Quaternion.identity);
                     if (Random.Range(0, 100) <= itemSpawnPercent)
                     {
-                        Instantiate(ItemToSpawn[Random.Range(0, ItemToSpawn.Length)], new Vector3(spawnPositionTAPOK.x, spawnPositionTAPOK.y + 1.6f, 0f), Quaternion.identity);
+                        Instantiate(ItemToSpawn[Random.Range(0, ItemToSpawn.Length)], new Vector3(lastSpawnPosition.x, lastSpawnPosition.y + 1.6f, 0f), Quaternion.identity);
 
                     }
                 }
             }
 
         }
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
