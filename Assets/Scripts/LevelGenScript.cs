@@ -15,9 +15,11 @@ public class LevelGenScript : MonoBehaviour
     public float itemSpawnPercent = 100;
     public GameObject[] ItemToSpawn;
     public GameObject Player;
+    public GameObject FinishPlatform;
 
     private int baseCountOfAsteroids = 40;
     private Vector3 lastSpawnPosition;
+    private int lastRowNumber = 0;
 
     // Use this for initialization
     void Start()
@@ -38,11 +40,18 @@ public class LevelGenScript : MonoBehaviour
     void generate_platforms()
     {
 
-        for (int i = 0; i <= baseCountOfAsteroids; i++)
+        for (int i = 0; i <= baseCountOfAsteroids; i++, lastRowNumber++)
         {
             lastSpawnPosition.y += Random.Range(minY, maxY);
+            if (lastRowNumber % 6 == 0 && lastRowNumber > 2)
+            {
+
+                lastSpawnPosition.x = Random.Range(-levelWidth, levelWidth);
+                Instantiate(FinishPlatform, lastSpawnPosition, Quaternion.identity);
+            }
             for (int j = 0; j < InRow; j++)
             {
+
                 lastSpawnPosition.x = Random.Range(-levelWidth, levelWidth);
                 
                 if (Random.Range(0, 100) <= 45 || j == 0)
