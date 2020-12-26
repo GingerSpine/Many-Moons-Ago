@@ -29,7 +29,7 @@ public class LevelGenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Player.transform.position.y >= (lastSpawnPosition.y - (minY + maxY) / 2))
+        if(Player.transform.position.y >= (lastSpawnPosition.y - 5 * ((minY + maxY) / 2)))
         {
             generate_platforms();
         }
@@ -44,6 +44,7 @@ public class LevelGenScript : MonoBehaviour
             for (int j = 0; j < InRow; j++)
             {
                 lastSpawnPosition.x = Random.Range(-levelWidth, levelWidth);
+                
                 if (Random.Range(0, 100) <= 45 || j == 0)
                 {
                     i++;

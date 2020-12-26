@@ -1638,7 +1638,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 12.41
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2689,7 +2689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028367503}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 9.545028, y: 0.4017452, z: 76.8361}
+  m_LocalPosition: {x: 20, y: 0.4017452, z: 76.8361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 477155653}
@@ -3617,16 +3617,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 0}
   numberofPlatform: 0
-  levelWidth: 3
+  levelWidth: 12
   minY: 2
   maxY: 4
-  aveRadius: 1
-  irregularity: 0.8
-  spikeyness: 0
-  numVerts: 6
-  InRow: 2
-  numberOfTAPOK: 60
-  TAPOKs:
+  InRow: 4
+  Asteroids:
   - {fileID: 1826528578}
   - {fileID: 253347922}
   - {fileID: 1523706616}
@@ -3640,6 +3635,7 @@ MonoBehaviour:
   itemSpawnPercent: 40
   ItemToSpawn:
   - {fileID: 52542631}
+  Player: {fileID: 376179901}
 --- !u!4 &1549070736
 Transform:
   m_ObjectHideFlags: 0
@@ -4099,7 +4095,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699532493}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.45497227, y: 0.4017452, z: 76.8361}
+  m_LocalPosition: {x: -10, y: 0.4017452, z: 76.8361}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 477155653}
