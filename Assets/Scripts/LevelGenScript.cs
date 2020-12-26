@@ -39,6 +39,7 @@ public class LevelGenScript : MonoBehaviour
 
     void generate_platforms()
     {
+        // test
 
         for (int i = 0; i <= baseCountOfAsteroids; i++, lastRowNumber++)
         {
